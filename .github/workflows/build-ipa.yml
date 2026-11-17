@@ -8,15 +8,15 @@ jobs:
       - run: brew install xcodegen && xcodegen generate
       - name: Build (unsigned)
         run: |
-          xcodebuild -project H.xcodeproj -scheme CinoClient -configuration Release \
+          xcodebuild -project h.xcodeproj -scheme CinoClient -configuration Release \
             -sdk iphoneos -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" build
       - name: Package IPA
         run: |
           mkdir Payload
           cp -R build/Build/Products/Release-iphoneos/H.app Payload/
-          zip -qr H.ipa Payload
+          zip -qr h.ipa Payload
       - uses: actions/upload-artifact@v4
         with:
-          name: H-ipa
-          path: H.ipa
+          name: h-ipa
+          path: h.ipa
