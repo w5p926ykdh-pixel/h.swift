@@ -29,6 +29,10 @@ jobs:
         with:
           gradle-version: '8.7'
 
+      - name: Validate Android Manifest
+        run: |
+          python3 -c "import xml.etree.ElementTree as ET; ET.parse('app/src/main/AndroidManifest.xml'); print('Manifest XML is valid')"
+
       - name: Build APK
         run: gradle assembleDebug
 
